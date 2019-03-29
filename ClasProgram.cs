@@ -49,7 +49,7 @@ namespace MyStudent
             
             Console.ReadLine();
         }
-        class MyPerson
+        class MyPerson                            //батьківський клас
         {
             public enum Sex { men, women, none };
             protected string name;
@@ -91,13 +91,13 @@ namespace MyStudent
                     data = value;
                 }
             }
-            public MyPerson()
+            public MyPerson()   //конструктор за замовчуванням
             {
                 this.name = " Noname ";
                 this.sex = Sex.none;
                 this.data = new DateTime(1999, 2, 21);
             }
-            public MyPerson(string a, Sex b, DateTime c)
+            public MyPerson(string a, Sex b, DateTime c)    //конструктор з параметрами
             {
                 name = a;
                 sex = b;
@@ -109,7 +109,7 @@ namespace MyStudent
             }
         }
 
-        class Student : MyPerson, IEnumerable, IComparable
+        class Student : MyPerson, IEnumerable, IComparable    //клас-нащадок
         {
             static string[] Subject;
             public const int Subjects = 5;
@@ -130,14 +130,14 @@ namespace MyStudent
                     BookID = value;
                 }
             }
-            static Student()
+            static Student()      //конструктор за замовчуванням
             {
                 Subject = new string[Subjects]
                 { "Mathematics", "Programming", "Algorithms","English","Statistics"};
 
             }
-            public Student(string name, Sex sex, DateTime data, string bookID, int pointt)
-            : base(name, sex, data)
+            public Student(string name, Sex sex, DateTime data, string bookID, int pointt)    //конструктор з параметрами
+            : base(name, sex, data)                                                  
             {
                 this.BookID = bookID;
                 this.point = new int[Subjects];
@@ -146,7 +146,7 @@ namespace MyStudent
             }
 
 
-            public void showPoint()
+            public void showPoint()   //метод для виведення оцінок 
             {
                 for (int i = 0; i < point.Length; ++i)
                 {
@@ -180,7 +180,7 @@ namespace MyStudent
                     else throw new Exception("Error");
                 }
             }
-            public double MaxVlue()
+            public double MaxVlue()    //обчислення найбільшої оцінки 
             {
                 int max = int.MinValue;
                 for (int i = 0; i < point.Length; i++)
@@ -209,21 +209,21 @@ namespace MyStudent
                 return c1.AveragePoint() < c2.AveragePoint();
             }
 
-            public double AveragePoint()
+            public double AveragePoint()  //обчислення середнього арефметичного
             {
                 int sum = 0;
                 for (int i = 0; i < point.Length; i++)
                     sum += point[i];
                 return sum / point.Length;
             }
-            public double SumPoint()
+            public double SumPoint()      //сумування оцінок
             {
                 int sum = 0;
                 for (int i = 0; i < point.Length; i++)
                     sum += point[i];
                 return sum;
             }
-            public IEnumerator GetEnumerator()
+            public IEnumerator GetEnumerator() 
             {
                 return point.GetEnumerator();
             }
